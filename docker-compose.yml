@@ -1,0 +1,37 @@
+services:
+  mini_postgres:
+    container_name: mini_postgres
+    image: postgres
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./.docker/db/:/var/lib/postgresql/data/
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d mini"]
+      interval: 2s
+      timeout: 5s
+      retries: 10
+    networks:
+      - mini_network
+  mini_api:
+    container_name: mini_api
+    restart: on-failure
+    depends_on:
+      - mini_postgres
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - mini_network
+
+networks:
+  mini_network:
+    name: mini_network
+ 
