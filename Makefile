@@ -3,4 +3,4 @@ export
 
 
 run:
-	go run cmd/main.go
+	go run /api/cmd/main.go

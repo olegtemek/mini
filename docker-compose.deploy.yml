@@ -3,8 +3,11 @@ services:
     container_name: mini_postgres
     image: postgres
     restart: unless-stopped
-    env_file:
-      - .env
+    environment:
+      POSTGRES_USER: ${{ secrets.DB_USER }}
+      POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      POSTGRES_DB: ${{ secrets.DB_NAME }}
+      PG_DATA: /var/lib/postgresql/data/
     ports:
       - "5432:5432"
     volumes:
@@ -21,8 +24,8 @@ services:
     restart: on-failure
     depends_on:
       - mini_postgres
-    env_file:
-      - .env
+    environment:
+      DATABASE_URL: ${{ secrets.DB_DRIVER }}://${{ secrets.DB_USER }}:${{ secrets.DB_PASSWORD }}@mini_postgres/${{ secrets.DB_NAME }}
     build:
       context: ./api
       dockerfile: ./Dockerfile
