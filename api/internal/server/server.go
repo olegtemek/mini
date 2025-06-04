@@ -56,7 +56,10 @@ func (a *App) GetAll(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Write(res)
+	_, err = w.Write(res)
+	if err != nil {
+		return
+	}
 }
 
 func (a *App) Create(w http.ResponseWriter, r *http.Request) {
@@ -79,5 +82,8 @@ func (a *App) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Write(res)
+	_, err = w.Write(res)
+	if err != nil {
+		return
+	}
 }
