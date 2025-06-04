@@ -19,4 +19,6 @@ jobs:
         with:   
           working-directory: ./api
       - name: Testing
-        run: cd ./api && go test -v ./... && cd ..
+        run: cd ./api && go test -v ./...
+      - name: Go back from ./api
+        run: cd ..
