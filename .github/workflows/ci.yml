@@ -18,3 +18,5 @@ jobs:
         uses: golangci/golangci-lint-action@v3
         with:   
           working-directory: ./api
+      - name: Testing
+        run: cd ./api && go test -v ./... && cd ..
