@@ -82,9 +82,8 @@ func (a *App) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// _, err = w.Write(res)
-	// if err != nil {
-	// 	return
-	// }
-	w.Write(res)
+	_, err = w.Write(res)
+	if err != nil {
+		return
+	}
 }
