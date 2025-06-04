@@ -4,8 +4,15 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-versions: [ '1.21.x' ]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Print test
-        run: echo "Test from ci"
+      - name: Setup Go ${{matrix.go-versions}}
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{matrix.go-verions}}
+      - name: Display Go version
+        run: go version
