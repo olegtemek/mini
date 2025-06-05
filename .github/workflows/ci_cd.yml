@@ -1,5 +1,11 @@
 name: CI/CD
+
 on: [push]
+
+permissions:
+  contents: read
+  packages: write
+
 
 jobs:
   test:
