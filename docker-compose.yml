@@ -33,5 +33,4 @@ services:
 
 networks:
   mini_network:
-    name: mini_network
  
