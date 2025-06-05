@@ -1,4 +1,4 @@
-name: Ci
+name: CD
 on: [push]
 
 jobs:
