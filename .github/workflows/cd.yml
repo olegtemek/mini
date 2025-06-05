@@ -1,0 +1,14 @@
+name: Cd
+on:
+  workflow_run: 
+    workflows: ["Ci"]
+    branches: [main]
+    types:
+      - completed
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploy after CI"
+
+
